@@ -20,7 +20,6 @@ builds:
       - darwin
 
 archives:
-  - name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
   - format: binary
 
 changelog:
