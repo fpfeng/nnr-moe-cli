@@ -20,8 +20,11 @@ builds:
       - darwin
 
 archives:
-  - format: binary
-  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+  - 
+    id: as-binary
+    format: binary
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+
 
 changelog:
   sort: asc
