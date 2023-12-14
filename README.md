@@ -3,7 +3,7 @@
 ### 安装
 在 https://github.com/fpfeng/nnr-moe-cli/releases 获取适合你的二进制文件
 ```console
-wget -O nnr-moe-cli https://github.com/fpfeng/nnr-moe-cli/releases/download/v0.0.3/nnr-moe-cli_0.0.3_linux_amd64
+wget -O nnr-moe-cli https://github.com/fpfeng/nnr-moe-cli/releases/latest/download/nnr-moe-cli_linux_amd64
 sudo mv nnr-moe-cli /usr/local/bin/nnr-moe-cli && chmod +x /usr/local/bin/nnr-moe-cli
 ```
 ### 使用
