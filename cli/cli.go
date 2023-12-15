@@ -43,6 +43,7 @@ func StartCLI(args []string) *CLIParseResult {
 			&cli.StringFlag{
 				Name:        "token",
 				Usage:       "https://nnr.moe/user/setting 的API`密钥`",
+				Required:    true,
 				Destination: &result.Token,
 			},
 			&cli.StringFlag{
@@ -76,26 +77,31 @@ func StartCLI(args []string) *CLIParseResult {
 					&cli.StringFlag{
 						Name:        "sid",
 						Usage:       "`节点`(源服务器)id",
+						Required:    true,
 						Destination: &result.AddRule.Sid,
 					},
 					&cli.StringFlag{
 						Name:        "remote",
 						Usage:       "目标服务器`域名或IP` (支持DDNS)",
+						Required:    true,
 						Destination: &result.AddRule.Remote,
 					},
 					&cli.IntFlag{
 						Name:        "rport",
 						Usage:       "目标`端口`",
+						Required:    true,
 						Destination: &result.AddRule.Rport,
 					},
 					&cli.StringFlag{
 						Name:        "type",
 						Usage:       "规则`协议`(需节点支持)",
+						Required:    true,
 						Destination: &result.AddRule.Type,
 					},
 					&cli.StringFlag{
 						Name:        "name",
 						Usage:       "规则`名称/备注`",
+						Required:    true,
 						Destination: &result.AddRule.Name,
 					},
 				},
@@ -111,11 +117,13 @@ func StartCLI(args []string) *CLIParseResult {
 					&cli.StringFlag{
 						Name:        "rid",
 						Usage:       "规则`id`",
+						Required:    true,
 						Destination: &result.EditedRule.Rid,
 					},
 					&cli.StringFlag{
 						Name:        "remote",
 						Usage:       "目标服务器`域名或IP` (支持DDNS)",
+						Required:    true,
 						Destination: &result.EditedRule.Remote,
 					},
 					&cli.IntFlag{
@@ -126,11 +134,13 @@ func StartCLI(args []string) *CLIParseResult {
 					&cli.StringFlag{
 						Name:        "type",
 						Usage:       "规则`协议`(需节点支持)",
+						Required:    true,
 						Destination: &result.EditedRule.Type,
 					},
 					&cli.StringFlag{
 						Name:        "name",
 						Usage:       "规则`名称/备注`",
+						Required:    true,
 						Destination: &result.EditedRule.Name,
 					},
 				},
@@ -146,6 +156,7 @@ func StartCLI(args []string) *CLIParseResult {
 					&cli.StringFlag{
 						Name:        "rid",
 						Usage:       "规则`id`",
+						Required:    true,
 						Destination: &result.DeleteRule.Rid,
 					},
 				},
