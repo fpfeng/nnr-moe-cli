@@ -14,7 +14,7 @@ const (
 	InvokeServers    TypeInvokeAction = "servers"
 	InvokeRules      TypeInvokeAction = "rules"
 	InvokeAddRule    TypeInvokeAction = "add-rule"
-	InvokeEditRule   TypeInvokeAction = "rdit-rule"
+	InvokeEditRule   TypeInvokeAction = "edit-rule"
 	InvokeDeleteRule TypeInvokeAction = "delete-rule"
 	InvokeGetRule    TypeInvokeAction = "get-rule"
 	InvokeGetServer  TypeInvokeAction = "get-server"
@@ -60,7 +60,7 @@ func StartCLI(args []string) *CLIParseResult {
 		},
 		Commands: []*cli.Command{
 			{
-				Name:  "servers",
+				Name:  string(InvokeServers),
 				Usage: "获取所有可使用节点",
 				Action: func(cCtx *cli.Context) error {
 					result.InvokeAction = InvokeServers
@@ -68,7 +68,7 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 			},
 			{
-				Name:  "rules",
+				Name:  string(InvokeRules),
 				Usage: "获取所有规则",
 				Action: func(cCtx *cli.Context) error {
 					result.InvokeAction = InvokeRules
@@ -76,7 +76,7 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 			},
 			{
-				Name:  "add-rule",
+				Name:  string(InvokeAddRule),
 				Usage: "添加规则",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -116,7 +116,7 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 			},
 			{
-				Name:  "edit-rule",
+				Name:  string(InvokeEditRule),
 				Usage: "编辑规则",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -155,7 +155,7 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 			},
 			{
-				Name:  "delete-rule",
+				Name:  string(InvokeDeleteRule),
 				Usage: "删除规则",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -171,7 +171,7 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 			},
 			{
-				Name:  "get-rule",
+				Name:  string(InvokeGetRule),
 				Usage: "查看规则",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -187,7 +187,7 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 			},
 			{
-				Name:  "get-server",
+				Name:  string(InvokeGetServer),
 				Usage: "获取单个节点",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
