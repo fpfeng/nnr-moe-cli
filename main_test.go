@@ -65,6 +65,14 @@ func rules() string {
 	return startCLIWithMockArgsThenCaptureResult([]string{"rules"})
 }
 
+func getRule(ruleID string) string {
+	return startCLIWithMockArgsThenCaptureResult([]string{
+		"get-rule",
+		"--rid",
+		ruleID,
+	})
+}
+
 func addRule() string {
 	return startCLIWithMockArgsThenCaptureResult([]string{
 		"add-rule",
@@ -158,11 +166,7 @@ func TestGetRule(t *testing.T) {
 	checkStatus(result, t)
 	var resp nnr_moe_core.ResponseRuleDetail
 	_ = json.Unmarshal([]byte(result), &resp)
-	result = startCLIWithMockArgsThenCaptureResult([]string{
-		"get-rule",
-		"--rid",
-		resp.Data.Rid,
-	})
+	result = getRule(resp.Data.Rid)
 	checkStatus(result, t)
 }
 
