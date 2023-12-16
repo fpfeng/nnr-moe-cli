@@ -58,8 +58,8 @@ nnr-moe-cli  --token $NNRMOE_TOKEN get-server --sid `节点id`
 ```bash
 #!/bin/bash
 #https://github.com/shadowsocks/shadowsocks-org/wiki/SIP002-URI-Scheme
-method="chacha20-ietf-poly1305"
-password="yoursspassword"
+method="chacha20-ietf-poly1305";
+password="yoursspassword";
 export userinfo=$(echo -ne "$method:$password" | base64 -w 0 );
 nnrmoe_token="..";
 
