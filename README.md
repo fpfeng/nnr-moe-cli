@@ -39,6 +39,18 @@ nnr-moe-cli  --token $NNRMOE_TOKEN edit-rule --rid 运行`rules`结果里面的r
 nnr-moe-cli  --token $NNRMOE_TOKEN delete-rule --rid 规则结果里面的rid
 ```
 
+#### 获取单个规则
+```console
+nnr-moe-cli  --token $NNRMOE_TOKEN get-rule --rid `规则id`
+```
+
+
+#### 获取单个节点
+```console
+nnr-moe-cli  --token $NNRMOE_TOKEN get-server --sid `节点id`
+```
+
+
 ### 复杂使用例子
 #### 从http调用生成ss订阅字符串然后转换配置
 1. 配置你落地ss监听端口55555并在nnr添加规则，这里是为了使用`select(.rport == 55555)`过滤得到所有ss规则
