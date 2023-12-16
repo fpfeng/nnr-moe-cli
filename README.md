@@ -53,7 +53,7 @@ nnr-moe-cli  --token $NNRMOE_TOKEN get-server --sid `节点id`
 
 ### 复杂使用例子
 #### 从http调用生成ss订阅字符串然后转换配置
-1. 配置你落地ss监听端口55555并在nnr添加规则，对应脚本里使用`select(.rport == 55555)`过滤得到所有ss规则。当然可以换成例如规则备注含有`666`对应`select( .name|contains("666") )`
+1. 配置你落地ss监听端口55555并在nnr添加规则，对应脚本里使用`select(.rport == 55555)`过滤得到所有ss规则。当然可以换成例如规则备注含有`666`对应`select( .name|contains("666") )`，记得[安装jq](https://jqlang.github.io/jq/download/)
 2. 保存生成订阅的脚本到`/usr/local/bin/nnr2sip002.sh`
 ```bash
 #!/bin/bash
