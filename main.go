@@ -40,6 +40,8 @@ func Dispatcher(result *nnr_moe_cli.CLIParseResult) {
 		outputFunc(nnrMoe.DeleteRule(&result.DeleteRule))
 	case nnr_moe_cli.InvokeGetRule:
 		outputFunc(nnrMoe.GetRule(&result.GetRule))
+	case nnr_moe_cli.InvokeGetServer:
+		outputFunc(nnrMoe.GetServer(result.GetServerSid))
 	default:
 	}
 }

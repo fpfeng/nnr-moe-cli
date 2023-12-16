@@ -88,11 +88,16 @@ type RequestEditedRule struct {
 	RuleBase
 }
 
+type ResponseGetServer struct {
+	ResponseBase
+	Data ServerInfo
+}
+
 type TypeRequestBody interface {
 	*RequestAddRule | *RequestRuleRid | *RequestEditedRule | string
 }
 
 type TypeResponse interface {
-	*ResponseServers | *ResponseRuleDetail | *ResponseDeleteRule | *ResponseRules
+	*ResponseServers | *ResponseRuleDetail | *ResponseDeleteRule | *ResponseRules | *ResponseGetServer
 	IsStatusOK() bool
 }

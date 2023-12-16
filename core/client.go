@@ -3,6 +3,7 @@ package core
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 
 	"github.com/go-resty/resty/v2"
@@ -95,5 +96,13 @@ func (nnrMoe *NNRMoe) GetRule(ruleID *RequestRuleRid) (result *ResponseRuleDetai
 		ResponseBase: ResponseBase{Status: 0},
 	}
 	sendRequest(nnrMoe.HttpRequest, URLGetRule, ruleID, result)
+	return
+}
+
+func (nnrMoe *NNRMoe) GetServer(serverID string) (result *ResponseGetServer) {
+	result = &ResponseGetServer{
+		ResponseBase: ResponseBase{Status: 0},
+	}
+	sendRequest(nnrMoe.HttpRequest, URL(fmt.Sprintf("%v/%v", URLServers, serverID)), "", result)
 	return
 }

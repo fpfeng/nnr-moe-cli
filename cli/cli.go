@@ -17,6 +17,7 @@ const (
 	InvokeEditRule   TypeInvokeAction = "rdit-rule"
 	InvokeDeleteRule TypeInvokeAction = "delete-rule"
 	InvokeGetRule    TypeInvokeAction = "get-rule"
+	InvokeGetServer  TypeInvokeAction = "get-server"
 )
 
 type CLIParseResult struct {
@@ -27,6 +28,7 @@ type CLIParseResult struct {
 	DeleteRule   core.RequestRuleRid
 	EditedRule   core.RequestEditedRule
 	GetRule      core.RequestRuleRid
+	GetServerSid string
 }
 
 func StartCLI(args []string) *CLIParseResult {
@@ -181,6 +183,22 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 				Action: func(cCtx *cli.Context) error {
 					result.InvokeAction = InvokeGetRule
+					return nil
+				},
+			},
+			{
+				Name:  "get-server",
+				Usage: "获取单个节点",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:        "sid",
+						Usage:       "节点`id`",
+						Required:    true,
+						Destination: &result.GetServerSid,
+					},
+				},
+				Action: func(cCtx *cli.Context) error {
+					result.InvokeAction = InvokeGetServer
 					return nil
 				},
 			},

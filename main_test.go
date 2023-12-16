@@ -14,11 +14,11 @@ import (
 
 const (
 	cliTestingRuleName = "cli_testing"
+	addRuleSid         = "82ebf39a-b624-463d-a4da-3d644a4749a9" // 广州CM-香港 x1.5
 )
 
 var (
 	mockOSArgsBase = []string{}
-	addRuleSid     = "82ebf39a-b624-463d-a4da-3d644a4749a9" // 广州CM-香港 x1.5
 )
 
 func setup() {
@@ -164,4 +164,16 @@ func TestGetRule(t *testing.T) {
 		resp.Data.Rid,
 	})
 	checkStatus(result, t)
+}
+
+func TestGetServer(t *testing.T) {
+	result := startCLIWithMockArgsThenCaptureResult([]string{
+		"get-server",
+		"--sid",
+		addRuleSid,
+	})
+	checkStatus(result, t)
+	if !strings.Contains(result, "广州") {
+		t.Error("Get server failed.")
+	}
 }
