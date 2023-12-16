@@ -69,18 +69,18 @@ type RequestAddRule struct {
 	RuleBase
 }
 
-type ResponseAddOrEditRule struct {
+type ResponseRuleDetail struct {
 	ResponseBase
 	Data Rule
 }
 
-type RequestDeleteRule struct {
+type RequestRuleRid struct {
 	Rid string `json:"rid"`
 }
 
 type ResponseDeleteRule struct {
 	ResponseBase
-	Data RequestDeleteRule
+	Data RequestRuleRid
 }
 
 type RequestEditedRule struct {
@@ -89,10 +89,10 @@ type RequestEditedRule struct {
 }
 
 type TypeRequestBody interface {
-	*RequestAddRule | *RequestDeleteRule | *RequestEditedRule | string
+	*RequestAddRule | *RequestRuleRid | *RequestEditedRule | string
 }
 
 type TypeResponse interface {
-	*ResponseServers | *ResponseAddOrEditRule | *ResponseDeleteRule | *ResponseRules
+	*ResponseServers | *ResponseRuleDetail | *ResponseDeleteRule | *ResponseRules
 	IsStatusOK() bool
 }

@@ -77,7 +77,7 @@ func addRule() string {
 		"--type",
 		"tcp",
 		"--name",
-		"cli_testing",
+		cliTestingRuleName,
 	})
 }
 
@@ -111,7 +111,7 @@ func TestAddRule(t *testing.T) {
 func TestEditRule(t *testing.T) {
 	result := addRule()
 	checkStatus(result, t)
-	var resp nnr_moe_core.ResponseAddOrEditRule
+	var resp nnr_moe_core.ResponseRuleDetail
 	_ = json.Unmarshal([]byte(result), &resp)
 	result = startCLIWithMockArgsThenCaptureResult([]string{
 		"edit-rule",
@@ -151,4 +151,17 @@ func TestDeleteRule(t *testing.T) {
 		})
 		checkStatus(result, t)
 	}
+}
+
+func TestGetRule(t *testing.T) {
+	result := addRule()
+	checkStatus(result, t)
+	var resp nnr_moe_core.ResponseRuleDetail
+	_ = json.Unmarshal([]byte(result), &resp)
+	result = startCLIWithMockArgsThenCaptureResult([]string{
+		"get-rule",
+		"--rid",
+		resp.Data.Rid,
+	})
+	checkStatus(result, t)
 }

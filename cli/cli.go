@@ -16,6 +16,7 @@ const (
 	InvokeAddRule    TypeInvokeAction = "add-rule"
 	InvokeEditRule   TypeInvokeAction = "rdit-rule"
 	InvokeDeleteRule TypeInvokeAction = "delete-rule"
+	InvokeGetRule    TypeInvokeAction = "get-rule"
 )
 
 type CLIParseResult struct {
@@ -23,8 +24,9 @@ type CLIParseResult struct {
 	OutputMode   string
 	InvokeAction TypeInvokeAction
 	AddRule      core.RequestAddRule
-	DeleteRule   core.RequestDeleteRule
+	DeleteRule   core.RequestRuleRid
 	EditedRule   core.RequestEditedRule
+	GetRule      core.RequestRuleRid
 }
 
 func StartCLI(args []string) *CLIParseResult {
@@ -33,8 +35,9 @@ func StartCLI(args []string) *CLIParseResult {
 		OutputMode:   "json",
 		InvokeAction: "",
 		AddRule:      core.RequestAddRule{},
-		DeleteRule:   core.RequestDeleteRule{},
+		DeleteRule:   core.RequestRuleRid{},
 		EditedRule:   core.RequestEditedRule{},
+		GetRule:      core.RequestRuleRid{},
 	}
 	app := &cli.App{
 		Usage:       fmt.Sprintf("CLI wrapper of https://nnr.moe v%v", Version),
@@ -162,6 +165,22 @@ func StartCLI(args []string) *CLIParseResult {
 				},
 				Action: func(cCtx *cli.Context) error {
 					result.InvokeAction = InvokeDeleteRule
+					return nil
+				},
+			},
+			{
+				Name:  "get-rule",
+				Usage: "查看规则",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:        "rid",
+						Usage:       "规则`id`",
+						Required:    true,
+						Destination: &result.GetRule.Rid,
+					},
+				},
+				Action: func(cCtx *cli.Context) error {
+					result.InvokeAction = InvokeGetRule
 					return nil
 				},
 			},

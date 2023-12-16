@@ -38,6 +38,8 @@ func Dispatcher(result *nnr_moe_cli.CLIParseResult) {
 		outputFunc(nnrMoe.EditRule(&result.EditedRule))
 	case nnr_moe_cli.InvokeDeleteRule:
 		outputFunc(nnrMoe.DeleteRule(&result.DeleteRule))
+	case nnr_moe_cli.InvokeGetRule:
+		outputFunc(nnrMoe.GetRule(&result.GetRule))
 	default:
 	}
 }

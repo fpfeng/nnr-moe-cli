@@ -16,6 +16,7 @@ const (
 	URLAddRule    URL = "https://nnr.moe/api/rules/add"
 	URLDeleteRule URL = "https://nnr.moe/api/rules/del"
 	URLEditRule   URL = "https://nnr.moe/api/rules/edit"
+	URLGetRule    URL = "https://nnr.moe/api/rules/get"
 )
 
 type NNRMoe struct {
@@ -65,26 +66,34 @@ func (nnrMoe *NNRMoe) Rules() (result *ResponseRules) {
 	return
 }
 
-func (nnrMoe *NNRMoe) DeleteRule(deleteRule *RequestDeleteRule) (result *ResponseDeleteRule) {
+func (nnrMoe *NNRMoe) DeleteRule(ruleID *RequestRuleRid) (result *ResponseDeleteRule) {
 	result = &ResponseDeleteRule{
 		ResponseBase: ResponseBase{Status: 0},
 	}
-	sendRequest(nnrMoe.HttpRequest, URLDeleteRule, deleteRule, result)
+	sendRequest(nnrMoe.HttpRequest, URLDeleteRule, ruleID, result)
 	return
 }
 
-func (nnrMoe *NNRMoe) EditRule(editedRule *RequestEditedRule) (result *ResponseAddOrEditRule) {
-	result = &ResponseAddOrEditRule{
+func (nnrMoe *NNRMoe) EditRule(editedRule *RequestEditedRule) (result *ResponseRuleDetail) {
+	result = &ResponseRuleDetail{
 		ResponseBase: ResponseBase{Status: 0},
 	}
 	sendRequest(nnrMoe.HttpRequest, URLEditRule, editedRule, result)
 	return
 }
 
-func (nnrMoe *NNRMoe) AddRule(rule *RequestAddRule) (result *ResponseAddOrEditRule) {
-	result = &ResponseAddOrEditRule{
+func (nnrMoe *NNRMoe) AddRule(rule *RequestAddRule) (result *ResponseRuleDetail) {
+	result = &ResponseRuleDetail{
 		ResponseBase: ResponseBase{Status: 0},
 	}
 	sendRequest(nnrMoe.HttpRequest, URLAddRule, rule, result)
+	return
+}
+
+func (nnrMoe *NNRMoe) GetRule(ruleID *RequestRuleRid) (result *ResponseRuleDetail) {
+	result = &ResponseRuleDetail{
+		ResponseBase: ResponseBase{Status: 0},
+	}
+	sendRequest(nnrMoe.HttpRequest, URLGetRule, ruleID, result)
 	return
 }
