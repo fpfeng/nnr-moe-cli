@@ -62,9 +62,13 @@ method="chacha20-ietf-poly1305";
 password="yoursspassword";
 export userinfo=$(echo -ne "$method:$password" | base64 -w 0 );
 nnrmoe_token="..";
-
 nnr-moe-cli --token $nnrmoe_token rules | jq -c '.Data[] | select(.rport == 55555)' | jq '.host,.port,.name' -r | xargs -d '\n' -n 3 bash -c 'echo ss://$userinfo@$0:$1#$2' | base64 -w 0
 ```
+* 如果设置了Cloudflare DDNS，可以用`sid`替换~~host~~字段组装域名
+```bash
+nnr-moe-cli --token $nnrmoe_token rules | jq -c '.Data[] | select(.rport == 55555)' | jq '.sid,.port,.name' -r | xargs -d '\n' -n 3 bash -c 'echo ss://$userinfo@$0.yourdomain.com:$1#$2' | base64 -w 0
+```
+
 3. [安装openresty](https://www.linode.com/docs/guides/using-openresty/)后添加配置
 ```nginx
     location /nnr2sip002 {
