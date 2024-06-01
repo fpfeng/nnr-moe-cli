@@ -3,7 +3,7 @@ module github.com/fpfeng/nnr-moe-cli
 go 1.21.4
 
 require (
-	github.com/go-resty/resty/v2 v2.10.0
+	github.com/go-resty/resty/v2 v2.11.0
 	github.com/urfave/cli/v2 v2.26.0
 )
 
