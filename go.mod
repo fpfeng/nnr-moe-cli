@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/go-resty/resty/v2 v2.13.1
-	github.com/urfave/cli/v2 v2.27.3
+	github.com/urfave/cli/v2 v2.27.4
 )
 
 require (
